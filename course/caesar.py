@@ -1,6 +1,4 @@
-
-
-def caesar(text: str, offset: int = 1) -> str:
+def caesar_encrypt(text: str, offset: int = 1) -> str:
     result = ''
 
     for char in text:
@@ -24,21 +22,21 @@ def caesar(text: str, offset: int = 1) -> str:
     return result
 
 
-def caesar_decrypt(text: str) -> list[list[str, int]]:
+def caesar_decrypt(text: str) -> list[tuple[str, int]]:
     result = []
 
     for i in range(1, 27):
-        result.append(caesar(text, i), 26 - i)
+        result.append((caesar_encrypt(text, 26 - i), 26 - i))
 
     return result
 
+sentence = "J'apprends le langage python"
+secret = caesar_encrypt(sentence, 3)
 
-sentence = 'J\'apprends le langage python'
-secret = caesar(sentence, 3)
-
-print(secret)
+print("Message chiffré : " + secret)
 
 possibilities = caesar_decrypt(secret)
 
-for possibility in possibilities:
-    print(possibility)
+print("Tentatives de déchiffrement :")
+for possibility, offset in possibilities:
+    print(f"Offset {offset}: {possibility}")
