@@ -4,7 +4,7 @@ import itertools
 import time
 
 characters = string.ascii_letters + string.digits + '()[]:;!'
-long = 5
+long = 4
 
 def generate_password():
     password = ''.join(random.choice(characters) for _ in range(long))
